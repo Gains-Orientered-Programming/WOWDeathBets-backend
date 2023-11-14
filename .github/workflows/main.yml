@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 16
       - name: npm install
-        run: npm install
+        run: cd api && npm install
       - name: tsc
         uses: icrawl/action-tsc@v1
   # test job goes here
