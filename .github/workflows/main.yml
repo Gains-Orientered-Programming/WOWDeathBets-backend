@@ -10,17 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: install node v16
+      - name: Install node v16
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - name: Debug
-        run: |
-          pwd
-          ls -R
       - name: npm install
         run: npm install
         working-directory: ./api
+      - name: Install TypeScript
+        run: npm install -g typescript
       - name: tsc
-        uses: icrawl/action-tsc@v1
-  # test job goes here
+        run: tsc --noEmit --noErrorTruncation --pretty false --incremental false
