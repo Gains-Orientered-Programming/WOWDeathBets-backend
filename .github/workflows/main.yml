@@ -14,8 +14,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+      - name: Debug
+        run: |
+          pwd
+          ls -R
       - name: npm install
-        run: cd api && npm install
+        run: npm install
+        working-directory: ./api
       - name: tsc
         uses: icrawl/action-tsc@v1
   # test job goes here
