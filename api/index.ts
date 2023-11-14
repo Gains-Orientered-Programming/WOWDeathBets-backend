@@ -1,1 +1,1 @@
-console.log("Will this compile?");
+console.lg('Will this compile?');
