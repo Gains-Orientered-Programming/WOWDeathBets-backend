@@ -4,10 +4,16 @@ on:
       - main
       - dev
 
+  push:
+    branches:
+      - main
+      - dev
+
 jobs:
   tsc:
     name: tsc
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js
@@ -28,6 +34,7 @@ jobs:
   run-tests:
     name: Run Tests in user-service
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js
