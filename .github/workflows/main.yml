@@ -34,6 +34,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
+      - name: Debug
+        run: |
+          pwd
+          ls -R
       - name: Install Dependencies
         run: npm ci
         working-directory: ./user-service
