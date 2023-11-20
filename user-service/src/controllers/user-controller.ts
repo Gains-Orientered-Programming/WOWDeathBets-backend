@@ -24,6 +24,8 @@ export const getUserByUsernameController = async (req: Request, res: Response) =
     }
   } catch (error) {
     res.status(500).json({ error: 'Unable to get user.' });
+    console.log('whoopsie, error happened');
+    console.log('extra line to test');
   }
 };
 
