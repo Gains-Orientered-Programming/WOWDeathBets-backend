@@ -4,20 +4,23 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import userRoutes from './routes/user-routes';
-import dotenv from 'dotenv';
+require('dotenv').config();
 
-dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-// const mongodbURI = process.env.MONGODB_URI || '';
-const mongodbURI = 'mongodb+srv://users:Eq6ylDvIvlmgs6AN@users.jg9w7bo.mongodb.net/';
+const mongodbURI = process.env.MONGODB_URI || '';
 
 mongoose.connect(mongodbURI);
 
-// Include user routes
 app.use('/users', userRoutes);
+
+const port = 8080;
+
+app.listen(port, () => {
+  console.log(`User Service listening at http://localhost:${port}`);
+});
 
 export default app;
