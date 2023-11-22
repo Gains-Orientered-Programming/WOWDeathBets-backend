@@ -25,6 +25,16 @@ export const getUserByUsername = async (username: string) => {
   }
 };
 
+// Function to get a user by their id
+export const getUserById = async (id: string) => {
+  try {
+    const user = await User.findOne({ _id: id });
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Function to delete a user by their id
 export const deleteUserById = async (id: string) => {
   try {
@@ -38,7 +48,7 @@ export const deleteUserById = async (id: string) => {
 // Function to delete a user by their username
 export const deleteUserByUsername = async (username: string) => {
   try {
-    await User.deleteMany({ username });
+    await User.deleteOne({ username });
   } catch (error) {
     throw error;
   }
