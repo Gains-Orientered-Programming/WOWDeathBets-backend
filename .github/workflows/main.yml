@@ -48,5 +48,7 @@ jobs:
         run: npm ci
         working-directory: ./user-service
       - name: Run Tests
+        env:
+          JWT_SECRET: $({ secrets.JWT_SECRET })
         run: npm test
         working-directory: ./user-service
