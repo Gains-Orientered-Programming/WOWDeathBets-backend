@@ -1,6 +1,13 @@
 import mongoose from 'mongoose';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
-import { createUser, getUserByUsername, getUserByEmail, deleteUserById } from '../services/user-services';
+import {
+  createUser,
+  getUserByUsername,
+  getUserByEmail,
+  deleteUserById,
+  getUserById,
+  deleteUserByUsername,
+} from '../services/user-services';
 
 const mongodbURI = process.env.MONGODB_URI || '';
 
@@ -16,9 +23,9 @@ describe('User Service Tests', () => {
   describe('Create User', () => {
     it('should create a new user', async () => {
       const userData = {
-        username: 'testuser',
-        email: 'test@example.com',
-        password: 'testpassword',
+        username: 'create_testuser',
+        email: 'create-test@example.com',
+        password: 'create-testpassword',
       };
 
       const newUser = await createUser(userData);
@@ -32,21 +39,115 @@ describe('User Service Tests', () => {
 
   describe('Get User by Username', () => {
     it('should get a user by their username', async () => {
-      const username = 'testuser';
-      const user = await getUserByUsername(username);
+      // First, create a user
+      const userData = {
+        username: 'username_testuser',
+        email: 'username-test@example.com',
+        password: 'username-testpassword',
+      };
 
-      expect(user).toBeDefined();
-      expect(user?.username).toBe(username);
+      const newUser = await createUser(userData);
+      expect(newUser).toBeDefined();
+
+      // Then, get the user by ID
+      const retrievedUser = await getUserByUsername(newUser.username);
+
+      // Finally, check if the retrieved user matches the created user
+      expect(retrievedUser).toBeDefined();
+      expect(retrievedUser?._id).toEqual(newUser._id);
+      expect(retrievedUser?.username).toBe(newUser.username);
+      expect(retrievedUser?.email).toBe(newUser.email);
+      await deleteUserById(retrievedUser?._id);
     });
   });
 
   describe('Get User by Email', () => {
     it('should get a user by their email', async () => {
-      const email = 'test@example.com';
-      const user = await getUserByEmail(email);
+      // First, create a user
+      const userData = {
+        username: 'email_testuser',
+        email: 'email-test@example.com',
+        password: 'email-testpassword',
+      };
 
-      expect(user).toBeDefined();
-      expect(user?.email).toBe(email);
+      const newUser = await createUser(userData);
+      expect(newUser).toBeDefined();
+
+      // Then, get the user by ID
+      const retrievedUser = await getUserByEmail(newUser.email);
+
+      // Finally, check if the retrieved user matches the created user
+      expect(retrievedUser).toBeDefined();
+      expect(retrievedUser?._id).toEqual(newUser._id);
+      expect(retrievedUser?.username).toBe(newUser.username);
+      expect(retrievedUser?.email).toBe(newUser.email);
+      await deleteUserById(retrievedUser?._id);
+    });
+  });
+
+  describe('Get User by ID', () => {
+    it('should get a user by their ID', async () => {
+      // First, create a user
+      const userData = {
+        username: 'id_testuser',
+        email: 'id-test@example.com',
+        password: 'id-testpassword',
+      };
+
+      const newUser = await createUser(userData);
+      expect(newUser).toBeDefined();
+
+      // Then, get the user by ID
+      const retrievedUser = await getUserById(newUser._id);
+
+      // Finally, check if the retrieved user matches the created user
+      expect(retrievedUser).toBeDefined();
+      expect(retrievedUser?._id).toEqual(newUser._id);
+      expect(retrievedUser?.username).toBe(newUser.username);
+      expect(retrievedUser?.email).toBe(newUser.email);
+      await deleteUserById(retrievedUser?._id);
+    });
+  });
+
+  describe('Delete User by ID', () => {
+    it('should delete a user by their ID', async () => {
+      // First, create a user
+      const userData = {
+        username: 'delete-id_user',
+        email: 'delete-id-test@example.com',
+        password: 'delete-id-testpassword',
+      };
+
+      const newUser = await createUser(userData);
+      expect(newUser).toBeDefined();
+
+      // Then, delete the user
+      await deleteUserById(newUser._id);
+
+      // Finally, try to get the user by ID and expect it to be null
+      const deletedUser = await getUserById(newUser._id);
+      expect(deletedUser).toBeNull();
+    });
+  });
+
+  describe('Delete User by username', () => {
+    it('should delete a user by their username', async () => {
+      // First, create a user
+      const userData = {
+        username: 'delete-username_user',
+        email: 'delete-username-test@example.com',
+        password: 'delete-username-testpassword',
+      };
+
+      const newUser = await createUser(userData);
+      expect(newUser).toBeDefined();
+
+      // Then, delete the user
+      await deleteUserByUsername(newUser.username);
+
+      // Finally, try to get the user by ID and expect it to be null
+      const deletedUser = await getUserByUsername(newUser.username);
+      expect(deletedUser).toBeNull();
     });
   });
 
