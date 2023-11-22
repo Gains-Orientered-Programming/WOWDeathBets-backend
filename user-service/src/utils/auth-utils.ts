@@ -13,18 +13,19 @@ export const comparePasswords = async (plainPassword: string, hashedPassword: st
   }
 };
 
-// // Function to generate a JSON Web Token (JWT) for a user
-// export const generateJWT = (user: User): string => {
-//   const payload = {
-//     userId: user.id, // Include any relevant user data here
-//     email: user.email,
-//     // Add any other user claims as needed
-//   };
+// Function to generate a JSON Web Token (JWT) for a user
+export const generateJWT = (user: User): string => {
+  const payload = {
+    userId: user.id, // Include any relevant user data here
+    email: user.email,
+    // Add any other user claims as needed
+  };
 
-//   // Generate a JWT with an expiration time (e.g., 1 hour)
-//   const token = jwt.sign(payload, process.env.JWT_SECRET, {
-//     expiresIn: '1h',
-//   });
+  // Generate a JWT with an expiration time (e.g., 1 hour)
+  const jwtSecret = process.env.JWT_SECRET || '';
+  const token = jwt.sign(payload, jwtSecret, {
+    expiresIn: '1h',
+  });
 
-//   return token;
-// };
+  return token;
+};
