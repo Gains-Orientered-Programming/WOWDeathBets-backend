@@ -1,10 +1,12 @@
 // src/services/user-service.ts
 import User from '../models/user-model';
+import bcrypt from 'bcrypt';
 
 // Function to create a new user
 export const createUser = async (userData: { username: string; email: string; password: string }) => {
   try {
-    const user = new User(userData);
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    const user = new User({ ...userData, password: hashedPassword });
     await user.save();
     return user;
   } catch (error) {
