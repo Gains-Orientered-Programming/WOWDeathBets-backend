@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
 import { createUser, getUserByUsername, getUserByEmail, deleteUserById } from '../services/user-services';
+require('dotenv').config();
 
 beforeAll(async () => {
   const mongodbURI = process.env.MONGODB_URI || '';
