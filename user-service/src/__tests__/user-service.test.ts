@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
 import { createUser, getUserByUsername, getUserByEmail, deleteUserById } from '../services/user-services';
 
+const mongodbURI = process.env.MONGODB_URI || '';
+
 beforeAll(async () => {
-  const mongodbURI = process.env.MONGODB_URI || '';
   await mongoose.connect(mongodbURI);
 });
 
