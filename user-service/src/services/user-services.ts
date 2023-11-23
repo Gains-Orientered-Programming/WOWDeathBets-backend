@@ -54,6 +54,15 @@ export const deleteUserByUsername = async (username: string) => {
   }
 };
 
+// Function to delete MANY user by their username
+export const deleteManyByUsername = async (username: string) => {
+  try {
+    await User.deleteMany({ username });
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Function to get a user by their email
 export const getUserByEmail = async (email: string) => {
   try {

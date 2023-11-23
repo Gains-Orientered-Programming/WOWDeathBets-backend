@@ -7,6 +7,7 @@ import {
   deleteUserById,
   getUserById,
   deleteUserByUsername,
+  deleteManyByUsername,
 } from '../services/user-services';
 
 // Controller function to create a new user
@@ -83,5 +84,15 @@ export const deleteUserByUsernameController = async (req: Request, res: Response
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Unable to delete user.' });
+  }
+};
+
+export const deleteManyByUsernameController = async (req: Request, res: Response) => {
+  try {
+    const username = req.params.username;
+    await deleteManyByUsername(username);
+    res.json({ message: 'Users deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to delete users.' });
   }
 };
