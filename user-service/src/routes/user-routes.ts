@@ -19,6 +19,6 @@ router.get('/email/:email', getUserByEmailController);
 router.get('/smoke-test', smokeTest);
 router.get('/user/:id', getUserByIdController);
 router.delete('/user/:id', deleteUserByIdController);
-router.delete('/user/:username', deleteUserByUsernameController);
+router.delete('/user/by-username/:username', deleteUserByUsernameController);
 
 export default router;
