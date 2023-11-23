@@ -7,6 +7,7 @@ import {
   smokeTest,
   getUserByIdController,
   deleteUserByIdController,
+  deleteUserByUsernameController,
 } from '../controllers/user-controller';
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.get('/email/:email', getUserByEmailController);
 router.get('/smoke-test', smokeTest);
 router.get('/user/:id', getUserByIdController);
 router.delete('/user/:id', deleteUserByIdController);
+router.delete('/user/:username', deleteUserByUsernameController);
 
 export default router;

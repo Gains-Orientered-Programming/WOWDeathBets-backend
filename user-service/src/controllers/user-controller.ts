@@ -1,6 +1,13 @@
 // src/controllers/user-controller.ts
 import { Request, Response } from 'express';
-import { createUser, getUserByUsername, getUserByEmail, deleteUserById, getUserById } from '../services/user-services';
+import {
+  createUser,
+  getUserByUsername,
+  getUserByEmail,
+  deleteUserById,
+  getUserById,
+  deleteUserByUsername,
+} from '../services/user-services';
 
 // Controller function to create a new user
 export const createUserController = async (req: Request, res: Response) => {
@@ -63,6 +70,16 @@ export const deleteUserByIdController = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     await deleteUserById(id);
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to delete user.' });
+  }
+};
+
+export const deleteUserByUsernameController = async (req: Request, res: Response) => {
+  try {
+    const username = req.params.username;
+    await deleteUserByUsername(username);
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Unable to delete user.' });
