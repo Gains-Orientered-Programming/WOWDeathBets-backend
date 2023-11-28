@@ -10,8 +10,8 @@ on:
       - dev
 
 jobs:
-  tsc:
-    name: tsc
+  tsc-api-gateway:
+    name: Build api-gateway
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,23 +19,53 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: Debug
-        run: |
-          pwd
-          ls -R
       - name: Install Dependencies
         run: npm ci
         working-directory: ./api-gateway
+      - name: Compile TypeScript
+        run: npm run build
+        working-directory: ./api-gateway
+
+  tsc-user-service:
+    name: Build user-service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: ./user-service
       - name: Compile TypeScript
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: npm run build
-        working-directory: ./api-gateway
+        working-directory: ./user-service
 
-  run-tests:
+  tsc-betting-service:
+    name: Build betting-service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: ./betting-service
+      - name: Compile TypeScript
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI_BETTING }}
+        run: npm run build
+        working-directory: ./betting-service
+
+  run-user-tests:
     name: Run Tests in user-service
-    needs: tsc
+    needs: tsc-user-service
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -56,3 +86,26 @@ jobs:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: npm test
         working-directory: ./user-service
+
+  run-bet-tests:
+    name: Run Tests in user-service
+    needs: tsc-betting-service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Debug
+        run: |
+          pwd
+          ls -R
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: ./betting-service
+      - name: Run Tests
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI_BETTING }}
+        run: npm test
+        working-directory: ./betting-service
