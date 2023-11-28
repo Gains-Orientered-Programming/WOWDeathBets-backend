@@ -19,7 +19,7 @@ app.listen(port, () => {
 app.use(
   '/bettings',
   createProxyMiddleware({
-    target: 'https://betting-service-993cf.ondigitalocean.app/', //should be changed to the digital ocean url for service
+    target: 'https://betting-service-993cf.ondigitalocean.app', //should be changed to the digital ocean url for service
     changeOrigin: true,
     pathRewrite: {
       [`^/bettings`]: '',
@@ -30,7 +30,7 @@ app.use(
 app.use(
   '/users',
   createProxyMiddleware({
-    target: 'https://user-service-wgj5a.ondigitalocean.app/', //should be changed to to digital ocean url for service
+    target: 'https://user-service-wgj5a.ondigitalocean.app', //should be changed to to digital ocean url for service
     changeOrigin: true,
     pathRewrite: {
       [`^/users`]: '',
