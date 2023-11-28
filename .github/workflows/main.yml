@@ -25,13 +25,11 @@ jobs:
           ls -R
       - name: Install Dependencies
         run: npm ci
-        working-directory: ./api
       - name: Compile TypeScript
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: npm run build
-        working-directory: ./api
 
   run-tests:
     name: Run Tests in user-service
