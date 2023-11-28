@@ -1,7 +1,6 @@
 // src/services/user-service.ts
 import Betting from '../models/betting-model';
-import mongoose, { Types } from 'mongoose';
-import bcrypt from 'bcrypt';
+import { Types } from 'mongoose';
 
 // Function to create a new user
 export const createBetting = async (bettingData: {

@@ -1,16 +1,14 @@
-// src/routes/user-routes.ts
-import express from 'express';
 import {
   createBettingController,
   getBettingByIdController,
   deleteBettingByIdController,
 } from '../controllers/betting-controller';
+import { Express, RequestHandler } from 'express';
 
-const router = express.Router();
+function routes(app: Express) {
+  app.post('/create-betting', createBettingController as RequestHandler);
+  app.get('/:id', getBettingByIdController as RequestHandler);
+  app.delete('/:id', deleteBettingByIdController as RequestHandler);
+}
 
-// Define user routes
-router.post('/create-betting', createBettingController);
-router.get('/betting/:id', getBettingByIdController);
-router.delete('/betting/:id', deleteBettingByIdController);
-
-export default router;
+export default routes;
