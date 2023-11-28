@@ -1,5 +1,8 @@
 /**
  * @openapi
+ * tags:
+ *  name: Betting
+ *  description: Betting endpoints
  * /bettings/create-betting:
  *  post:
  *   summary: Create a new betting
@@ -33,10 +36,6 @@
  *        amount:
  *         type: number
  *         default: 0
- */
-
-/**
- * @openapi
  * /bettings/{id}:
  *  get:
  *   tags: [Betting]
@@ -51,11 +50,19 @@
  *      description: The betting by id
  *    403:
  *      description: Forbidden
- */
-
-/**
- * @openapi
- * /bettings/{id}:
+ *  put:
+ *   tags: [Betting]
+ *   summary: Update a betting by id
+ *   parameters:
+ *    - in: path
+ *      name: id
+ *      description: The id of the betting
+ *      required: true
+ *   responses:
+ *    200:
+ *     description: The betting updated
+ *    403:
+ *     description: Forbidden
  *  delete:
  *   tags: [Betting]
  *   summary: Delete a betting by id

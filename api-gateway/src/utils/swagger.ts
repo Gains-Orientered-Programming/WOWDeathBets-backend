@@ -6,24 +6,10 @@ const options: swaggerJsDoc.Options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Betting Service API',
+      title: 'Deathbets API',
       version: '1.0.0',
-      description: 'Betting Service API',
+      description: 'Deathbets API',
     },
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-        },
-      },
-    },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
   },
   apis: ['./src/schemas/*.ts'],
 };

@@ -25,10 +25,10 @@ describe('Betting Service Tests', () => {
       const newBetting = await createBetting(bettingData);
 
       expect(newBetting).toBeDefined();
-      expect(newBetting.characterName).toBe(newBetting.characterName);
-      expect(newBetting.region).toBe(newBetting.region);
-      expect(newBetting.realm).toBe(newBetting.realm);
-      expect(newBetting.amount).toBe(newBetting.amount);
+      expect(newBetting.characterName).toBe(bettingData.characterName);
+      expect(newBetting.region).toBe(bettingData.region);
+      expect(newBetting.realm).toBe(bettingData.realm);
+      expect(newBetting.amount).toBe(bettingData.amount);
       await deleteBettingById(newBetting._id);
     });
   });
@@ -51,11 +51,11 @@ describe('Betting Service Tests', () => {
 
       // Finally, check if the retrieved user matches the created user
       expect(retrievedBetting).toBeDefined();
-      expect(retrievedBetting?._id).toEqual(retrievedBetting?._id);
-      expect(retrievedBetting?.characterName).toBe(retrievedBetting?.characterName);
-      expect(retrievedBetting?.region).toBe(retrievedBetting?.region);
-      expect(retrievedBetting?.realm).toBe(retrievedBetting?.realm);
-      expect(retrievedBetting?.amount).toBe(retrievedBetting?.amount);
+      expect(retrievedBetting?._id).toEqual(newBetting?._id);
+      expect(retrievedBetting?.characterName).toBe(newBetting?.characterName);
+      expect(retrievedBetting?.region).toBe(newBetting?.region);
+      expect(retrievedBetting?.realm).toBe(newBetting?.realm);
+      expect(retrievedBetting?.amount).toBe(newBetting?.amount);
       await deleteBettingById(retrievedBetting?._id);
     });
   });
