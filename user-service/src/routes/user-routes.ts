@@ -1,5 +1,5 @@
 // src/routes/user-routes.ts
-import express from 'express';
+import { Express } from 'express';
 import {
   createUserController,
   getUserByUsernameController,
@@ -11,19 +11,18 @@ import {
   deleteManyByUsernameController,
 } from '../controllers/user-controller';
 
-const router = express.Router();
+function route(app: Express) {
+  //GET
+  app.get('/smoke-test', smokeTest);
+  app.get('/user/:id', getUserByIdController);
+  app.get('/email/:email', getUserByEmailController);
+  app.get('/username/:username', getUserByUsernameController);
+  //POST
+  app.post('/create-user', createUserController);
+  //DELETE
+  app.delete('/user/:id', deleteUserByIdController);
+  app.delete('/user/by-username/:username', deleteUserByUsernameController);
+  app.delete('/user/many-by-username/:username', deleteManyByUsernameController);
+}
 
-// Define user routes
-//GET
-router.get('/smoke-test', smokeTest);
-router.get('/user/:id', getUserByIdController);
-router.get('/email/:email', getUserByEmailController);
-router.get('/username/:username', getUserByUsernameController);
-//POST
-router.post('/create-user', createUserController);
-//DELETE
-router.delete('/user/:id', deleteUserByIdController);
-router.delete('/user/by-username/:username', deleteUserByUsernameController);
-router.delete('/user/many-by-username/:username', deleteManyByUsernameController);
-
-export default router;
+export default route;

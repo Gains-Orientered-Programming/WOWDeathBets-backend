@@ -4,6 +4,7 @@ on:
       - main
       - dev
 
+  # Should be removed when the project is finished
   push:
     branches:
       - main
