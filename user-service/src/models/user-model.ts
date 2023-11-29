@@ -8,6 +8,7 @@ const userSchema = new Schema({
   currency: { type: Number, default: 0, min: 0 },
 });
 
+// User type for JWT Payload
 export type User = {
   id: string;
   username: string;
