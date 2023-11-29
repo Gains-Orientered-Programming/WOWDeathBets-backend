@@ -35,6 +35,16 @@ export const getUserById = async (id: string) => {
   }
 };
 
+//Function to get all users
+export const getAllUsers = async () => {
+  try {
+    const users = await User.find();
+    return users;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Function to delete a user by their id
 export const deleteUserById = async (id: string) => {
   try {

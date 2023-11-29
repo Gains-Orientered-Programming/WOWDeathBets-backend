@@ -9,11 +9,13 @@ import {
   deleteUserByIdController,
   deleteUserByUsernameController,
   deleteManyByUsernameController,
+  getAllUsersController,
 } from '../controllers/user-controller';
 
 function route(app: Express) {
   //GET
   app.get('/smoke-test', smokeTest);
+  app.get('/users', getAllUsersController);
   app.get('/user/:id', getUserByIdController);
   app.get('/email/:email', getUserByEmailController);
   app.get('/username/:username', getUserByUsernameController);

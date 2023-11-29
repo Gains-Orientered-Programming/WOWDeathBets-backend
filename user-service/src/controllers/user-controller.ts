@@ -8,6 +8,7 @@ import {
   getUserById,
   deleteUserByUsername,
   deleteManyByUsername,
+  getAllUsers,
 } from '../services/user-services';
 
 // Controller function to create a new user
@@ -64,6 +65,15 @@ export const getUserByIdController = async (req: Request, res: Response) => {
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Unable to get user.' });
+  }
+};
+
+export const getAllUsersController = async (req: Request, res: Response) => {
+  try {
+    const users = await getAllUsers();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to get users.' });
   }
 };
 
