@@ -33,8 +33,8 @@ export const getBettingByIdController = async (req: Request, res: Response) => {
 
 export const getBettingsByUserIdController = async (req: Request, res: Response) => {
   try {
-    const userId = req.params.userId;
-    const bettings = await getAllBettingByUserId(userId);
+    const id = req.params.id;
+    const bettings = await getAllBettingByUserId(id);
     if (!bettings) {
       return res.status(404).json({ message: 'Betting not found' });
     }
