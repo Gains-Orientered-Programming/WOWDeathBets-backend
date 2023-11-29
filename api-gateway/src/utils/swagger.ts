@@ -10,20 +10,6 @@ const options: swaggerJsDoc.Options = {
       version: '1.0.0',
       description: 'Deathbets API',
     },
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-        },
-      },
-    },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
   },
   apis: ['./src/schemas/*.ts'],
 };
