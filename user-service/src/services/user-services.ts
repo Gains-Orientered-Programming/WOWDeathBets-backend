@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt';
 export const createUser = async (userData: { username: string; email: string; password: string }) => {
   try {
     const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const user = new User({ ...userData, password: hashedPassword });
+    const user = new User({ ...userData, password: hashedPassword, currency: 0 });
     await user.save();
     return user;
   } catch (error) {

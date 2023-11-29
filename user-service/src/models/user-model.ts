@@ -5,13 +5,14 @@ const userSchema = new Schema({
   username: String,
   email: String,
   password: String,
+  currency: { type: Number, default: 0 },
 });
 
 export type User = {
-  id?: string;
   username: string;
   email: string;
   password: string;
+  currency: number;
 };
 
 // Create a User model
@@ -22,6 +23,7 @@ interface UserDocument extends Document {
   username: string;
   email: string;
   password: string;
+  currency: number;
 }
 
 export default User;
