@@ -1,6 +1,5 @@
 // src/models/user-model.ts
 import mongoose, { Schema, Document } from 'mongoose';
-//TODO: Make UUID implementation and generation
 // Define a User schema
 const userSchema = new Schema({
   username: String,
