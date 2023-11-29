@@ -9,6 +9,7 @@ import {
   deleteUserByUsername,
   deleteManyByUsername,
   getAllUsers,
+  loginUser,
 } from '../services/user-services';
 
 // Controller function to create a new user
@@ -18,6 +19,20 @@ export const createUserController = async (req: Request, res: Response) => {
     res.status(201).json(newUser);
   } catch (error) {
     res.status(500).json({ error: 'Unable to create user.' });
+  }
+};
+
+// Controller function to login a user
+export const loginController = async (req: Request, res: Response) => {
+  try {
+    const userData = {
+      email: req.body.email,
+      password: req.body.password,
+    };
+    const token = await loginUser(userData);
+    res.json({ token });
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to login' });
   }
 };
 
