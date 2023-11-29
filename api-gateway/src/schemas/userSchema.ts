@@ -110,7 +110,7 @@
  *     description: User created successfully
  *    500:
  *     description: Unable to create user.
- *  * /user-service/login:
+ * /user-service/login:
  *  post:
  *   summary: Login a user
  *   tags: [User]
