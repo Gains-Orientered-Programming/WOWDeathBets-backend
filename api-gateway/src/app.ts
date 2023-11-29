@@ -17,23 +17,23 @@ app.listen(port, () => {
 });
 
 app.use(
-  '/bettings',
+  '/betting-service',
   createProxyMiddleware({
     target: 'https://betting-service-993cf.ondigitalocean.app/', //should be changed to the digital ocean url for service
     changeOrigin: true,
     pathRewrite: {
-      [`^/bettings`]: '',
+      [`^/betting-service`]: '',
     },
   }),
 );
 
 app.use(
-  '/users',
+  '/user-service',
   createProxyMiddleware({
     target: 'https://user-service-wgj5a.ondigitalocean.app/', //should be changed to to digital ocean url for service
     changeOrigin: true,
     pathRewrite: {
-      [`^/users`]: '',
+      [`^/user-service`]: '',
     },
   }),
 );
