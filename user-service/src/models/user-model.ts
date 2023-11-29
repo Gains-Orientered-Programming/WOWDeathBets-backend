@@ -10,7 +10,7 @@ const userSchema = new Schema({
 
 // User type for JWT Payload
 export type User = {
-  id: string;
+  _id: mongoose.Types.ObjectId;
   username: string;
   email: string;
   password: string;
@@ -18,7 +18,7 @@ export type User = {
 };
 
 // Create a User model
-const User = mongoose.model<UserDocument>('User', userSchema);
+const UserModel = mongoose.model<UserDocument>('User', userSchema);
 
 // Define UserDocument interface
 interface UserDocument extends Document {
@@ -28,4 +28,4 @@ interface UserDocument extends Document {
   currency: number;
 }
 
-export default User;
+export default UserModel;

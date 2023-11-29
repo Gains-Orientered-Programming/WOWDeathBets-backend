@@ -21,8 +21,8 @@ describe('comparePasswords', () => {
 
 describe('generateJWT', () => {
   it('should return a valid JWT for a user', () => {
-    const user: User = {
-      id: 'user-id',
+    const user: any = {
+      _id: 'user-id',
       email: 'user@example.com',
       username: 'username',
       password: 'password',
@@ -31,6 +31,6 @@ describe('generateJWT', () => {
 
     const token = generateJWT(user);
     const decoded = jwt.verify(token, process.env.JWT_SECRET || '');
-    expect(decoded).toMatchObject({ userId: user.id, email: user.email });
+    expect(decoded).toMatchObject({ userId: user._id, email: user.email });
   });
 });

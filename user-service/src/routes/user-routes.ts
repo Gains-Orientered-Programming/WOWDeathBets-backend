@@ -10,6 +10,7 @@ import {
   deleteUserByUsernameController,
   deleteManyByUsernameController,
   getAllUsersController,
+  loginController,
 } from '../controllers/user-controller';
 
 function route(app: Express) {
@@ -21,6 +22,7 @@ function route(app: Express) {
   app.get('/username/:username', getUserByUsernameController);
   //POST
   app.post('/create-user', createUserController);
+  app.post('/login', loginController);
   //DELETE
   app.delete('/user/:id', deleteUserByIdController);
   //Don't include this in the swaggerui docs
