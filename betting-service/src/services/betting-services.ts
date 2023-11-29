@@ -28,6 +28,24 @@ export const getBettingById = async (id: string) => {
   }
 };
 
+export const getAllBettingByUserId = async (userId: string) => {
+  try {
+    const bettings = await Betting.find({ userId: userId });
+    return bettings;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getAllBettings = async () => {
+  try {
+    const bettings = await Betting.find();
+    return bettings;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Function to delete a user by their id
 export const deleteBettingById = async (id: string) => {
   try {

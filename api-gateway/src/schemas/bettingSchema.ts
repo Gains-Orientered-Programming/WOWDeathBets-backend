@@ -1,6 +1,14 @@
 /**
  * @openapi
- * /bettings/create-betting:
+ * /betting-service/bettings:
+ *  get:
+ *   summary: Get all bettings
+ *   tags: [Betting]
+ *   responses:
+ *    200:
+ *     description: The list of all bettings
+ *    403:
+ *     description: Forbidden
  *  post:
  *   summary: Create a new betting
  *   tags: [Betting]
@@ -16,11 +24,15 @@
  *      schema:
  *       type: object
  *       required:
+ *        - userId
  *        - characterName
  *        - region
  *        - realm
  *        - amount
  *       properties:
+ *        userId:
+ *         type: string
+ *         default: 0
  *        characterName:
  *         type: string
  *         default: petrice
@@ -33,11 +45,7 @@
  *        amount:
  *         type: number
  *         default: 0
- */
-
-/**
- * @openapi
- * /bettings/{id}:
+ * /betting-service/bettings/{id}:
  *  get:
  *   tags: [Betting]
  *   summary: Get a betting by id
@@ -51,11 +59,6 @@
  *      description: The betting by id
  *    403:
  *      description: Forbidden
- */
-
-/**
- * @openapi
- * /bettings/{id}:
  *  delete:
  *   tags: [Betting]
  *   summary: Delete a betting by id
