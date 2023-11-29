@@ -1,6 +1,6 @@
 /**
  * @openapi
- * * tags:
+ * tags:
  *  - name: Betting
  *    description: operations for betting-service
  * /betting-service/bettings:
