@@ -26,6 +26,7 @@ describe('generateJWT', () => {
       email: 'user@example.com',
       username: 'username',
       password: 'password',
+      currency: 0,
     };
 
     const token = generateJWT(user);

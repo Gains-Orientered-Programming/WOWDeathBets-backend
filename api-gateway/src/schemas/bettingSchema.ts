@@ -1,5 +1,8 @@
 /**
  * @openapi
+ * tags:
+ *  - name: Betting
+ *    description: operations for betting-service
  * /betting-service/bettings:
  *  get:
  *   summary: Get all bettings

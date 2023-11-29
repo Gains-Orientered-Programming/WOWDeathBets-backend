@@ -23,6 +23,7 @@ function route(app: Express) {
   app.post('/create-user', createUserController);
   //DELETE
   app.delete('/user/:id', deleteUserByIdController);
+  //Don't include this in the swaggerui docs
   app.delete('/user/by-username/:username', deleteUserByUsernameController);
   app.delete('/user/many-by-username/:username', deleteManyByUsernameController);
 }
