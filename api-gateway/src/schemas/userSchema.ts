@@ -3,14 +3,14 @@
  * tags:
  *  - name: User
  *    description: operations for user-service
- * /smoke-test:
+ * user-service/smoke-test:
  *  get:
  *   summary: Smoke test
  *   tags: [User]
  *   responses:
  *    200:
  *     description: User Service is up!
- * /users:
+ * user-service/users:
  *  get:
  *   summary: Get all users
  *   tags: [User]
@@ -19,7 +19,7 @@
  *     description: List of all users
  *    500:
  *     description: Unable to get users.
- * /user/{id}:
+ * user-service/user/{id}:
  *  get:
  *   summary: Get a user by their ID
  *   tags: [User]
@@ -50,7 +50,7 @@
  *     description: User deleted successfully
  *    500:
  *     description: Unable to delete user.
- * /email/{email}:
+ * user-service/email/{email}:
  *  get:
  *   summary: Get a user by their email
  *   tags: [User]
@@ -67,7 +67,7 @@
  *     description: User not found
  *    500:
  *     description: Unable to get user.
- * /username/{username}:
+ * user-service/username/{username}:
  *  get:
  *   summary: Get a user by their username
  *   tags: [User]
@@ -84,7 +84,7 @@
  *     description: User not found
  *    500:
  *     description: Unable to get user.
- * /create-user:
+ * user-service/create-user:
  *  post:
  *   summary: Create a new user
  *   tags: [User]
