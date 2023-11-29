@@ -5,7 +5,7 @@ const userSchema = new Schema({
   username: String,
   email: String,
   password: String,
-  currency: { type: Number, default: 0 },
+  currency: { type: Number, default: 0, min: 0 },
 });
 
 export type User = {
