@@ -75,7 +75,7 @@
  *     description: The betting deleted
  *    403:
  *     description: Forbidden
- * /betting-service/bettings/{userId}:
+ * /betting-service/bettings/userId/{userId}:
  *  get:
  *   tags: [Betting]
  *   summary: Get all bettings by userId
