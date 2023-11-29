@@ -110,4 +110,34 @@
  *     description: User created successfully
  *    500:
  *     description: Unable to create user.
+ *  * /user-service/login:
+ *  post:
+ *   summary: Login a user
+ *   tags: [User]
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       required:
+ *        - email
+ *        - password
+ *       properties:
+ *        email:
+ *         type: string
+ *        password:
+ *         type: string
+ *   responses:
+ *    200:
+ *     description: Login successful
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: object
+ *        properties:
+ *         token:
+ *          type: string
+ *    500:
+ *     description: Unable to login
  */
