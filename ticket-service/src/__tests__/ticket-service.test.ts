@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
-import { createDepositTicket, createWithdrawTicket, } from '../services/ticket-services';
+import { createDepositTicket, createWithdrawTicket, deleteTicketById, } from '../services/ticket-services';
 import { deleteTicketByIdController } from '../controllers/ticket-controller';
 
 const mongodbURI = process.env.MONGODB_URI ?? '';
@@ -18,9 +18,8 @@ describe('Ticket Service Tests', () => {
     it('should create a new ticket for deposit', async () => {
       const ticketData = {
         characterName: 'test_characterName',
-        region: 'test_region',
-        realm: 'test_realm',
         amount: 0,
+        id: "1"
       };
 
       const newTicket = await createDepositTicket(ticketData);
@@ -28,7 +27,8 @@ describe('Ticket Service Tests', () => {
       expect(newTicket).toBeDefined();
       expect(newTicket.characterName).toBe(newTicket.characterName);
       expect(newTicket.amount).toBe(newTicket.amount);
-      await deleteTicketByIdController(newTicket._id);
+      expect(newTicket.id).toBe(newTicket.id)
+      await deleteTicketById(newTicket._id);
     });
   });
 });

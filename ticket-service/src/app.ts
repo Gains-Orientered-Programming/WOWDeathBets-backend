@@ -3,7 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import routes from './routes/betting-routes';
+import routes from './routes/ticket-routes';
 require('dotenv').config();
 
 const app = express();
@@ -15,7 +15,7 @@ const mongodbURI = process.env.MONGODB_URI ?? '';
 const port = 8080;
 
 app.listen(port, () => {
-  console.log(`Betting Service listening at http://localhost:${port}`);
+  console.log(`Ticket Service listening at http://localhost:${port}`);
 
   mongoose.connect(mongodbURI);
 

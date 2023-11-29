@@ -7,6 +7,7 @@ import Ticket from '../models/ticket-model';
 export const createDepositTicket = async (ticketData: {
   characterName: string;
   amount: number;
+  id: string
 }) => {
   try {
     const ticket = new Ticket({ ...ticketData });
@@ -21,6 +22,7 @@ export const createDepositTicket = async (ticketData: {
 export const createWithdrawTicket = async (ticketData: {
   characterName: string;
   amount: number;
+  id: string
 }) => {
   try {
     const ticket = new Ticket({ ...ticketData });

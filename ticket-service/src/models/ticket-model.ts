@@ -5,6 +5,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 const ticketSchema = new Schema({
   characterName: String,
   amount: Number,
+  id: String
 });
 
 export type User = {
