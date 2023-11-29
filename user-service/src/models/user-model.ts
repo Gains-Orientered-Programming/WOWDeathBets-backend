@@ -9,6 +9,7 @@ const userSchema = new Schema({
 });
 
 export type User = {
+  id: string;
   username: string;
   email: string;
   password: string;
