@@ -17,6 +17,7 @@ export const comparePasswords = async (plainPassword: string, hashedPassword: st
 export const generateJWT = (user: User): string => {
   const payload = {
     userId: user._id,
+    username: user.username,
     email: user.email,
     currency: user.currency,
   };
