@@ -2,14 +2,43 @@
 import User from '../models/user-model';
 import mongoose, { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
+import { comparePasswords, generateJWT } from '../utils/auth-utils';
 
 // Function to create a new user
 export const createUser = async (userData: { username: string; email: string; password: string }) => {
   try {
     const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const user = new User({ ...userData, password: hashedPassword });
+    const user = new User({ ...userData, password: hashedPassword, currency: 0 });
     await user.save();
     return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Function to login a user
+export const loginUser = async (userData: { email: string; password: string }) => {
+  try {
+    const user = await User.findOne({ email: userData.email });
+    if (!user) {
+      throw new Error('User not found.');
+    }
+    const isValid = await comparePasswords(userData.password, user.password);
+    if (!isValid) {
+      throw new Error('Invalid password.');
+    }
+    const token = generateJWT(user);
+    return token;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//Function to get all users
+export const getAllUsers = async () => {
+  try {
+    const users = await User.find();
+    return users;
   } catch (error) {
     throw error;
   }
@@ -29,6 +58,16 @@ export const getUserByUsername = async (username: string) => {
 export const getUserById = async (id: string) => {
   try {
     const user = await User.findOne({ _id: id });
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Function to get a user by their email
+export const getUserByEmail = async (email: string) => {
+  try {
+    const user = await User.findOne({ email });
     return user;
   } catch (error) {
     throw error;
@@ -58,16 +97,6 @@ export const deleteUserByUsername = async (username: string) => {
 export const deleteManyByUsername = async (username: string) => {
   try {
     await User.deleteMany({ username });
-  } catch (error) {
-    throw error;
-  }
-};
-
-// Function to get a user by their email
-export const getUserByEmail = async (email: string) => {
-  try {
-    const user = await User.findOne({ email });
-    return user;
   } catch (error) {
     throw error;
   }

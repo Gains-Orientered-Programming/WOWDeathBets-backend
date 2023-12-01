@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
 import {
   createUser,
@@ -7,6 +9,7 @@ import {
   deleteUserById,
   getUserById,
   deleteUserByUsername,
+  loginUser,
 } from '../services/user-services';
 
 const mongodbURI = process.env.MONGODB_URI || '';
@@ -158,5 +161,30 @@ describe('User Service Tests', () => {
 
       expect(user).toBeNull();
     });
+  });
+});
+
+describe('loginUser', () => {
+  it('should login a user and return a valid JWT', async () => {
+    const userData = {
+      email: 'user@example.com',
+      username: 'username',
+      password: 'password',
+      currency: 0,
+    };
+
+    // Create the user
+    const createdUser = await createUser(userData);
+
+    // Login the user
+    const loginData = { email: createdUser.email, password: userData.password };
+    const token = await loginUser(loginData);
+
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || '');
+    expect(decoded).toMatchObject({ userId: createdUser._id.toString(), email: createdUser.email });
+
+    // Delete user to clean up the test
+    await deleteUserById(createdUser._id);
   });
 });
