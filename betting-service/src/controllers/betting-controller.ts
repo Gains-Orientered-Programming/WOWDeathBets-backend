@@ -6,6 +6,7 @@ import {
   deleteBettingById,
   getAllBettingByUserId,
   getAllBettings,
+  getMostBetted,
 } from '../services/betting-services';
 
 // Controller function to create a new user
@@ -47,6 +48,18 @@ export const getBettingsByUserIdController = async (req: Request, res: Response)
 export const getAllBettingsController = async (req: Request, res: Response) => {
   try {
     const bettings = await getAllBettings();
+    if (!bettings) {
+      return res.status(404).json({ message: 'Betting not found' });
+    }
+    res.json(bettings);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to get betting.' });
+  }
+};
+
+export const getMostBettedController = async (req: Request, res: Response) => {
+  try {
+    const bettings = await getMostBetted();
     if (!bettings) {
       return res.status(404).json({ message: 'Betting not found' });
     }
