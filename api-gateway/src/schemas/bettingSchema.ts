@@ -48,6 +48,15 @@
  *        amount:
  *         type: number
  *         default: 0
+ * /betting-service/bettings/most:
+ *  get:
+ *   summary: Get the most betted character
+ *   tags: [Betting]
+ *   responses:
+ *    200:
+ *     description: The most betted character
+ *    403:
+ *     description: Forbidden
  * /betting-service/bettings/{id}:
  *  get:
  *   tags: [Betting]
