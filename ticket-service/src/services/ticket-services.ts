@@ -1,28 +1,11 @@
 // src/services/user-service.ts
-import Betting from '../models/ticket-model';
 import { Types } from 'mongoose';
 import Ticket from '../models/ticket-model';
 
 // Function to create a new Deposit ticket
-export const createDepositTicket = async (ticketData: {
+export const createTicket = async (ticketData: {
   characterName: string;
   amount: number;
-  id: string
-}) => {
-  try {
-    const ticket = new Ticket({ ...ticketData });
-    await ticket.save();
-    return ticket;
-  } catch (error) {
-    throw error;
-  }
-};
-
-// Function to create a new withdraw ticket
-export const createWithdrawTicket = async (ticketData: {
-  characterName: string;
-  amount: number;
-  id: string
 }) => {
   try {
     const ticket = new Ticket({ ...ticketData });
@@ -34,9 +17,9 @@ export const createWithdrawTicket = async (ticketData: {
 };
 
 // Function to get a ticket by ID
-export const getTicketById = async (id: string) => {
+export const getTicketByUserId = async (userId: string) => {
   try {
-    const user = await Ticket.findOne({ _id: id });
+    const user = await Ticket.findOne({ userId: userId });
     return user;
   } catch (error) {
     throw error;

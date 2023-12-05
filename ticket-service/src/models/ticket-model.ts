@@ -3,13 +3,14 @@ import mongoose, { Schema, Document } from 'mongoose';
 //TODO: Make UUID implementation and generation
 // Define a ticket schema
 const ticketSchema = new Schema({
+  userId: String,
   characterName: String,
   amount: Number,
-  id: String
 });
 
 export type User = {
   id?: string;
+  userId: string;
   characterName: string;
   region: string;
   realm: string;
@@ -21,6 +22,7 @@ const Ticket = mongoose.model<TicketDocument>('Ticket', ticketSchema);
 
 // Define UserDocument interface
 interface TicketDocument extends Document {
+  userId: string;
   characterName: string;
   amount: number;
 }

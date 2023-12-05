@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
-import { createDepositTicket, createWithdrawTicket, deleteTicketById, } from '../services/ticket-services';
-import { deleteTicketByIdController } from '../controllers/ticket-controller';
+import { createTicket, deleteTicketById, } from '../services/ticket-services';
 
 const mongodbURI = process.env.MONGODB_URI ?? '';
 
@@ -22,7 +21,7 @@ describe('Ticket Service Tests', () => {
         id: "1"
       };
 
-      const newTicket = await createDepositTicket(ticketData);
+      const newTicket = await createTicket(ticketData);
 
       expect(newTicket).toBeDefined();
       expect(newTicket.characterName).toBe(newTicket.characterName);

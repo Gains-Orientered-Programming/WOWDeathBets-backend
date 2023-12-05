@@ -1,33 +1,37 @@
 // src/controllers/user-controller.ts
 import { Request, Response } from 'express';
-import { createDepositTicket, createWithdrawTicket, getTicketById, deleteTicketById } from '../services/ticket-services';
+import { createTicket, 
+   getTicketByUserId, 
+   deleteTicketById } from '../services/ticket-services';
 
 // Controller function to create a new deposit ticket
-export const createDepositTicketController = async (req: Request, res: Response) => {
+export const createTicketController = async (req: Request, res: Response) => {
   try {
-    const { characterName, amount } = req.body;
-    const newDepositTicket = await createDepositTicket({ characterName, amount });
-    res.status(201).json(newDepositTicket);
+    const newTicket = await createTicket(req.body);
+    res.status(201).json(newTicket);
   } catch (error) {
     res.status(500).json({ error: 'Unable to create deposit ticket.' });
   }
 };
 
-// Controller function to create a new withdraw ticket
-export const createWithdrawTicketController = async (req: Request, res: Response) => {
+
+export const getTicketByUserIdController = async (req: Request, res: Response) => {
   try {
-    const { characterName, amount } = req.body;
-    const newWithdrawTicket = await createWithdrawTicket({ characterName, amount });
-    res.status(201).json(newWithdrawTicket);
+    const id = req.params.id;
+    const bettings = await getTicketByUserId(id);
+    if (!bettings) {
+      return res.status(404).json({ message: 'ticket not found' });
+    }
+    res.json(bettings);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to create withdraw ticket.' });
+    res.status(500).json({ error: 'Unable to get ticket.' });
   }
 };
 
 export const getTicketByIdController = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
-    const ticket = await getTicketById(id);
+    const ticket = await getTicketByUserId(id);
     if (!ticket) {
       return res.status(404).json({ message: 'Ticket not found' });
     }
