@@ -1,8 +1,13 @@
 import request from 'supertest';
 import app from '../app'; // Replace with the actual path to your Express app
 
+let createdBettingId: string;
+
 describe('Betting Services System Tests', () => {
-  let createdBettingId: string;
+  afterAll((done) => {
+    console.log('Closing server');
+    app.close(done);
+  });
 
   it('should create a new betting via API', async () => {
     const bettingData = {
@@ -12,7 +17,6 @@ describe('Betting Services System Tests', () => {
       realm: 'TestRealm',
       amount: 100,
     };
-
     const response = await request(app)
       .post('/bettings') // Assuming this is the route for creating a betting
       .send(bettingData)
@@ -38,7 +42,7 @@ describe('Betting Services System Tests', () => {
   });
 
   it('should get all bettings via API', async () => {
-    const response = await request(app)
+    await request(app)
       .get('/bettings') // Assuming this is the route for getting all bettings
       .expect(200); // Expecting a 200 OK status code
 
@@ -51,4 +55,6 @@ describe('Betting Services System Tests', () => {
       .delete(`/bettings/${createdBettingId}`) // Assuming this is the route for deleting a betting by ID
       .expect(200); // Expecting a 200 OK status code
   });
+
+  afterAll(() => {});
 });

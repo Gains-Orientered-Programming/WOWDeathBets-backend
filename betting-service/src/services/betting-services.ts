@@ -54,7 +54,7 @@ interface Bettings {
   amount: string;
 }
 
-export const getMostBetted = async (): Promise<Bettings[]> => {
+export const getMostBetted = async () => {
   try {
     const bettings = await Betting.find();
 
@@ -107,7 +107,7 @@ export const getMostBetted = async (): Promise<Bettings[]> => {
 };
 
 // Function to delete a user by their id
-export const deleteBettingById = async (id: string): Promise<boolean> => {
+export const deleteBettingById = async (id: string) => {
   try {
     const objectId = new Types.ObjectId(id);
     const result = await Betting.deleteOne({ _id: objectId });

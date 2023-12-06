@@ -14,7 +14,7 @@ const mongodbURI = process.env.MONGODB_URI ?? '';
 
 const port = 8080;
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Betting Service listening at http://localhost:${port}`);
 
   mongoose.connect(mongodbURI);
@@ -22,4 +22,4 @@ app.listen(port, () => {
   routes(app);
 });
 
-export default app;
+export default server;
