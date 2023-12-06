@@ -10,15 +10,6 @@ const bettingSchema = new Schema({
   amount: Number,
 });
 
-export type User = {
-  id?: string;
-  userId: string;
-  characterName: string;
-  region: string;
-  realm: string;
-  amount: number;
-};
-
 // Create a Betting model
 const Betting = mongoose.model<BettingDocument>('Betting', bettingSchema);
 

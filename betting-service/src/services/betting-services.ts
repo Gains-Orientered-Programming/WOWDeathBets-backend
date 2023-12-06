@@ -4,6 +4,7 @@ import { Types } from 'mongoose';
 
 // Function to create a new user
 export const createBetting = async (bettingData: {
+  userId: string;
   characterName: string;
   region: string;
   realm: string;

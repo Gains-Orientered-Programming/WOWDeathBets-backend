@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
 import { createBetting, getBettingById, deleteBettingById } from '../services/betting-services';
 
+//unit test for betting service targetting functionalities related to to creating retrieving and deleting bettings using mongoose and mongodb
+//These tests fall under the category of unit testing, focusing on individual parts or units of code to ensure they function correctly.
+
 const mongodbURI = process.env.MONGODB_URI ?? '';
 
 beforeAll(async () => {
@@ -16,6 +19,7 @@ describe('Betting Service Tests', () => {
   describe('Create Betting', () => {
     it('should create a new betting', async () => {
       const bettingData = {
+        userId: 'test',
         characterName: 'test_characterName',
         region: 'test_region',
         realm: 'test_realm',
@@ -37,6 +41,7 @@ describe('Betting Service Tests', () => {
     it('should get a betting by their ID', async () => {
       // First, create a user
       const bettingData = {
+        userId: 'test',
         characterName: 'test_characterName',
         region: 'test_region',
         realm: 'test_realm',
@@ -63,6 +68,7 @@ describe('Betting Service Tests', () => {
   describe('Delete Betting by ID', () => {
     it('should delete a betting by their ID', async () => {
       const bettingData = {
+        userId: 'test',
         characterName: 'test_characterName',
         region: 'test_region',
         realm: 'test_realm',
