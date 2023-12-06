@@ -1,4 +1,4 @@
-import mockingoose from 'mockingoose';
+const mockingoose = require('mockingoose');
 import Betting from '../models/betting-model';
 import {
   createBetting,
@@ -12,7 +12,6 @@ import {
 describe('Betting Services Tests', () => {
   it('should create a new betting', async () => {
     const mockBetting = {
-      _id: '6093eb433fc0a31f2cc1cc83', // Mocked ID
       userId: 'test',
       characterName: 'test_characterName',
       region: 'test_region',
@@ -51,18 +50,9 @@ describe('Betting Services Tests', () => {
   });
 
   it('should delete a betting by ID', async () => {
-    const mockBetting = {
-      _id: '6093eb433fc0a31f2cc1cc83', // Mocked ID
-      userId: 'test',
-      characterName: 'test_characterName',
-      region: 'test_region',
-      realm: 'test_realm',
-      amount: 0,
-    };
-
-    mockingoose(Betting).toReturn(mockBetting, 'findOneAndDelete');
+    mockingoose(Betting).toReturn({ deletedCount: 1 }, 'deleteOne');
     const deletedBetting = await deleteBettingById('6093eb433fc0a31f2cc1cc83');
-    expect(deletedBetting).toMatchObject(mockBetting);
+    expect(deletedBetting).toBe(true);
   });
 
   it('should get all bettings by userId', async () => {

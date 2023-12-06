@@ -107,10 +107,16 @@ export const getMostBetted = async (): Promise<Bettings[]> => {
 };
 
 // Function to delete a user by their id
-export const deleteBettingById = async (id: string) => {
+export const deleteBettingById = async (id: string): Promise<boolean> => {
   try {
     const objectId = new Types.ObjectId(id);
-    await Betting.deleteOne({ _id: objectId });
+    const result = await Betting.deleteOne({ _id: objectId });
+
+    if (result && result.deletedCount === 1) {
+      return true; // Return true to indicate successful deletion
+    }
+
+    return false; // Return false if the betting was not found or not deleted
   } catch (error) {
     throw error;
   }
