@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
 import { createBetting, getBettingById, deleteBettingById } from '../services/betting-services';
 
-//unit test for betting service targetting functionalities related to to creating retrieving and deleting bettings using mongoose and mongodb
-//These tests fall under the category of unit testing, focusing on individual parts or units of code to ensure they function correctly.
+//intergration test
+// do i get answer from the database
 
 const mongodbURI = process.env.MONGODB_URI ?? '';
 
