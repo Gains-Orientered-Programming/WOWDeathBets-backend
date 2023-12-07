@@ -1,4 +1,4 @@
-import { Collection, ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 
 export interface Betting {
   _id?: ObjectId;
@@ -7,8 +7,4 @@ export interface Betting {
   realm: string;
   region: string;
   amount: number;
-}
-
-export interface Database {
-  bettings: Collection<Betting>;
 }

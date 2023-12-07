@@ -2,19 +2,19 @@ import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   type Betting {
-    id: ID!
-    userId: String!
-    characaterName: String!
-    realm: String!
-    region: String!
-    amount: Int!
+    id: ID
+    userId: String
+    characterName: String
+    realm: String
+    region: String
+    amount: Int
   }
 
   type Query {
-    bettings: [Betting!]!
+    bettings: [Betting]
   }
 
   type Mutation {
-    createBetting(userId: String!, characterName: String!, realm: String!, region: String!, amount: Int!): Betting!
+    createBetting(userId: String, characterName: String, realm: String, region: String, amount: Int): Betting
   }
 `;
