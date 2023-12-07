@@ -38,13 +38,13 @@ app.use(
   }),
 );
 
-// app.use(
-//   '/tickets',
-//   createProxyMiddleware({
-//     target: 'http://localhost:8080/', //should be changed to to digital ocean url for service
-//     changeOrigin: true,
-//     pathRewrite: {
-//       [`^/tickets`]: '',
-//     },
-//   }),
-// );
+app.use(
+  '/ticket-service',
+  createProxyMiddleware({
+    target: 'https://ticket-service-ytl6g.ondigitalocean.app/', //should be changed to to digital ocean url for service
+    changeOrigin: true,
+    pathRewrite: {
+      [`^/ticket-service`]: '',
+    },
+  }),
+);
