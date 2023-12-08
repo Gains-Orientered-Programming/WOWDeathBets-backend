@@ -10,7 +10,7 @@ import {
   getUserById,
   deleteUserByUsername,
   loginUser,
-} from '../services/user-services';
+} from '../../services/user-services';
 
 const mongodbURI = process.env.MONGODB_URI || '';
 
