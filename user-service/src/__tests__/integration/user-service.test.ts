@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
 import {
