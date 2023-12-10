@@ -3,7 +3,7 @@ import Ticket from '../models/ticket-model'; // Update the import to match your 
 import {
   createTicket,
   getTicketById,
-  getAllTicketsByUserId,
+  getTicketsByUserId,
   getAllTickets,
   deleteTicketById,
 } from '../services/ticket-services';
@@ -65,7 +65,7 @@ describe('Ticket Services Tests', () => {
     ];
 
     mockingoose(Ticket).toReturn(mockTicket, 'find');
-    const tickets = await getAllTicketsByUserId('test');
+    const tickets = await getTicketsByUserId('test');
     expect(tickets[0].characterName).toBe('test_characterName');
     expect(tickets[1].characterName).toBe('test_characterName2');
   });
