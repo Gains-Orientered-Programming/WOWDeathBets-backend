@@ -48,3 +48,14 @@ app.use(
     },
   }),
 );
+
+app.use(
+  '/betting-service-gql',
+  createProxyMiddleware({
+    target: 'https://betting-service-gql-2qamm.ondigitalocean.app/', //should be changed to to digital ocean url for service
+    changeOrigin: true,
+    pathRewrite: {
+      [`^/betting-service-gql`]: '',
+    },
+  }),
+);
