@@ -13,7 +13,7 @@ const mount = async (app: Application) => {
     await server.start();
     server.applyMiddleware({ app, path: '/api' });
     await mongoose.connect(mongodbURI);
-
+    //d
     app.listen(PORT, () => console.log(`[app] : http://localhost:${PORT}`));
   } catch (error) {
     console.log(error);

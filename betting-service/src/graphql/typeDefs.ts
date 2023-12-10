@@ -12,6 +12,7 @@ export const typeDefs = gql`
 
   type Query {
     bettings: [Betting]
+    getMostBetted: [Betting]
   }
 
   type Mutation {
