@@ -12,7 +12,7 @@ function routes(app: Express) {
   app.get('/tickets', getAllTicketsController as RequestHandler);
   app.get('/tickets/userId/:id', getTicketByIdController as RequestHandler);
   app.delete('/tickets/:id', deleteTicketByIdController as RequestHandler);
-  app.delete('tickets/all/byCharacterName/:charactername', deleteAllTicketsByCharacterNameController as RequestHandler);
+  app.delete('/tickets/all/byCharacterName/:charactername', deleteAllTicketsByCharacterNameController as RequestHandler);
 }
 
 export default routes;
