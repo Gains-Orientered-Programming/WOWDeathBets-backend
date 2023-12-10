@@ -5,6 +5,7 @@ import {
   deleteBettingByIdController,
   getAllBettingsController,
   getMostBettedController,
+  deleteAllByCharacterNameController,
 } from '../controllers/betting-controller';
 import { Express, RequestHandler } from 'express';
 
@@ -15,7 +16,7 @@ function routes(app: Express) {
   app.get('/bettings/userId/:id', getBettingsByUserIdController as RequestHandler);
   app.post('/bettings', createBettingController as RequestHandler);
   app.delete('/bettings/:id', deleteBettingByIdController as RequestHandler);
-  app.delete('/bettings/all/:characterName', deleteBettingByIdController as RequestHandler);
+  app.delete('/bettings/all/:characterName', deleteAllByCharacterNameController as RequestHandler);
 }
 
 export default routes;
