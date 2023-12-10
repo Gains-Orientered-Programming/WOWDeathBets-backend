@@ -15,6 +15,7 @@ function routes(app: Express) {
   app.get('/bettings/userId/:id', getBettingsByUserIdController as RequestHandler);
   app.post('/bettings', createBettingController as RequestHandler);
   app.delete('/bettings/:id', deleteBettingByIdController as RequestHandler);
+  app.delete('/bettings/all/:characterName', deleteBettingByIdController as RequestHandler);
 }
 
 export default routes;

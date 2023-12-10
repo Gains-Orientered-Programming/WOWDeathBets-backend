@@ -121,3 +121,11 @@ export const deleteBettingById = async (id: string) => {
     throw error;
   }
 };
+
+export const deleteManyByCharacterName = async (characterName: string) => {
+  try {
+    await Betting.deleteMany({ characterName: characterName });
+  } catch (error) {
+    throw error;
+  }
+};

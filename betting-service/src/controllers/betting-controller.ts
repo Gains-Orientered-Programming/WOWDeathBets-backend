@@ -78,3 +78,13 @@ export const deleteBettingByIdController = async (req: Request, res: Response) =
     res.status(500).json({ error: 'Unable to delete betting.' });
   }
 };
+
+export const deleteAllByCharacterName = async (req: Request, res: Response) => {
+  try {
+    const characterName = req.params.characterName;
+    await deleteBettingById(characterName);
+    res.json({ message: 'Bettings deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to delete betting.' });
+  }
+};
