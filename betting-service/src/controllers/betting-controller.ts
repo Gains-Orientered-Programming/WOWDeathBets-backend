@@ -79,7 +79,7 @@ export const deleteBettingByIdController = async (req: Request, res: Response) =
   }
 };
 
-export const deleteAllByCharacterName = async (req: Request, res: Response) => {
+export const deleteAllByCharacterNameController = async (req: Request, res: Response) => {
   try {
     const characterName = req.params.characterName;
     await deleteBettingById(characterName);
