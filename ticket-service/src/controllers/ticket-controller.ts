@@ -1,7 +1,8 @@
 // src/controllers/user-controller.ts
 import { Request, Response } from 'express';
 import { createTicket, 
-   getTicketByUserId, 
+   getTicketsByUserId, 
+   getAllTickets,
    deleteTicketById } from '../services/ticket-services';
 
 // Controller function to create a new deposit ticket
@@ -14,24 +15,21 @@ export const createTicketController = async (req: Request, res: Response) => {
   }
 };
 
-
-export const getTicketByUserIdController = async (req: Request, res: Response) => {
+export const getAllTicketsController = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
-    const bettings = await getTicketByUserId(id);
-    if (!bettings) {
-      return res.status(404).json({ message: 'ticket not found' });
-    }
-    res.json(bettings);
+    const tickets = await getAllTickets(); // Call the service function to get all tickets
+    res.json(tickets);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to get ticket.' });
+    res.status(500).json({ error: 'Unable to get tickets.' });
   }
 };
+
+
 
 export const getTicketByIdController = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
-    const ticket = await getTicketByUserId(id);
+    const ticket = await getTicketsByUserId(id);
     if (!ticket) {
       return res.status(404).json({ message: 'Ticket not found' });
     }

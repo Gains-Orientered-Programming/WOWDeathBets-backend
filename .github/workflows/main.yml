@@ -89,8 +89,8 @@ jobs:
         working-directory: ./user-service
 
   run-bet-tests:
-    name: Run Tests in betting-service
-    needs: tsc-betting-service
+    name: Run Tests in betting-service-legacy
+    needs: tsc-betting-service-legacy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -104,9 +104,9 @@ jobs:
           ls -R
       - name: Install Dependencies
         run: npm ci
-        working-directory: ./betting-service
+        working-directory: ./betting-service-legacy
       - name: Run Tests
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI_BETTING }}
         run: npm test
-        working-directory: ./betting-service
+        working-directory: ./betting-service-legacy
