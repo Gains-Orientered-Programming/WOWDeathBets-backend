@@ -90,7 +90,7 @@ jobs:
 
   run-bet-tests:
     name: Run Tests in betting-service-legacy
-    needs: tsc-betting-service-legacy
+    needs: tsc-betting-service
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
