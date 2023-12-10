@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { beforeAll, afterAll, describe, expect, it } from '@jest/globals';
 import {
@@ -10,7 +9,7 @@ import {
   getUserById,
   deleteUserByUsername,
   loginUser,
-} from '../services/user-services';
+} from '../../services/user-services';
 
 const mongodbURI = process.env.MONGODB_URI || '';
 
