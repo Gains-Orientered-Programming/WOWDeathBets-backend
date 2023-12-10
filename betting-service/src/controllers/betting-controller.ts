@@ -7,6 +7,7 @@ import {
   getAllBettingByUserId,
   getAllBettings,
   getMostBetted,
+  deleteManyByCharacterName,
 } from '../services/betting-services';
 
 // Controller function to create a new user
@@ -82,7 +83,7 @@ export const deleteBettingByIdController = async (req: Request, res: Response) =
 export const deleteAllByCharacterNameController = async (req: Request, res: Response) => {
   try {
     const characterName = req.params.characterName;
-    await deleteBettingById(characterName);
+    await deleteManyByCharacterName(characterName);
     res.json({ message: 'Bettings deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Unable to delete betting.' });
