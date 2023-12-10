@@ -1,11 +1,7 @@
 import Ticket from '../models/ticket-model';
 import { Types } from 'mongoose';
 
-export const createTicket = async (ticketData: {
-  userId: string;
-  characterName: string;
-  amount: number;
-}) => {
+export const createTicket = async (ticketData: { userId: string; characterName: string; amount: number }) => {
   try {
     const ticket = new Ticket({ ...ticketData });
     await ticket.save();
@@ -107,6 +103,14 @@ export const deleteTicketById = async (id: string) => {
     }
 
     return false; // Return false if the ticket was not found or not deleted
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteAllTicketsByCharacterName = async (characterName: string) => {
+  try {
+    await Ticket.deleteMany({ characterName: characterName });
   } catch (error) {
     throw error;
   }
