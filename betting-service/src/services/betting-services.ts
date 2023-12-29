@@ -9,6 +9,7 @@ export const createBetting = async (bettingData: {
   region: string;
   realm: string;
   amount: number;
+  status: 'pending';
 }) => {
   try {
     const betting = new Betting({ ...bettingData });

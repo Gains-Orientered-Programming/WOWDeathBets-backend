@@ -5,31 +5,29 @@ const topics = [{ topic: 'user_transactions' }];
 
 const consumer = new Consumer(client, [{ topic: 'topic_name' }], { autoCommit: true });
 
+interface Betting {
+  _id: string;
+  userId: string;
+  characterName: string;
+  region: string;
+  realm: string;
+  amount: number;
+  status: 'pending' | 'concluded' | 'resolved';
+}
+
 consumer.on('message', async (message) => {
-  try {
-    let transaction;
-    if (typeof message.value === 'string') {
-      transaction = JSON.parse(message.value);
-    } else {
-      transaction = JSON.parse(message.value.toString());
-    }
+  const concludedBettings: Betting[] = JSON.parse(message.value.toString()) as Betting[];
 
-    const { userId, amount } = transaction;
-
-    const user = await User.findOne({ _id: userId });
+  for (const betting of concludedBettings) {
+    const user = await User.findOne({ _id: betting.userId });
 
     if (user) {
-      user.currency += amount;
+      user.currency += betting.amount;
       await user.save();
-      console.log(`Updated user ${userId} with amount: ${amount}`);
+      console.log(`Updated user ${betting.userId} with amount: ${betting.amount}`);
     } else {
-      console.log(`User ${userId} not found.`);
+      console.log(`User ${betting.userId} not found.`);
     }
-
-    console.log(`Received transaction for user ${userId}. Adding amount: ${amount}`);
-    // Perform the update operation in your database for the given userId
-  } catch (error) {
-    console.error('Error processing message:', error);
   }
 });
 

@@ -8,6 +8,7 @@ const bettingSchema = new Schema({
   region: String,
   realm: String,
   amount: Number,
+  status: String,
 });
 
 // Create a Betting model
@@ -20,6 +21,7 @@ interface BettingDocument extends Document {
   region: string;
   realm: string;
   amount: number;
+  status: 'pending' | 'concluded' | 'resolved';
 }
 
 export default Betting;

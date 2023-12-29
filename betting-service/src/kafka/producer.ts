@@ -1,19 +1,15 @@
 import { KafkaClient, Producer, ProduceRequest } from 'kafka-node';
 import cron from 'node-cron';
+import Betting from '../models/betting-model';
+
 const client = new KafkaClient({ kafkaHost: 'localhost:9092' });
 const producer = new Producer(client);
 
-const message = {
-  userId: '123',
-  amount: 1000,
-};
-
-const payloads: ProduceRequest[] = [{ topic: 'user_transactions', messages: JSON.stringify(message) }];
-
-//TODO should check the betting database for resovled bettings and send
-// the results to the user database
-//runs every 30 minutes
+//runs every 30 minutes and send concluded bettings to kafka
 cron.schedule('*/30 * * * *', async () => {
+  const concludedBettings = await Betting.find({ status: 'concluded' });
+  const payloads: ProduceRequest[] = [{ topic: 'user_transactions', messages: JSON.stringify(concludedBettings) }];
+
   producer.send(payloads, (err, data) => {
     if (err) {
       console.error('Error sending message:', err);
