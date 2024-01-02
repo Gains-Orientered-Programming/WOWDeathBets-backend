@@ -3,15 +3,23 @@ import Betting from '../models/betting-model';
 import { Types } from 'mongoose';
 
 // Function to create a new user
-export const createBetting = async (bettingData: {
+export const createBetting = async ({
+  userId,
+  characterName,
+  region,
+  realm,
+  amount,
+  status = 'pending',
+}: {
   userId: string;
   characterName: string;
   region: string;
   realm: string;
   amount: number;
-  status: 'pending';
+  status?: string;
 }) => {
   try {
+    const bettingData = { userId, characterName, region, realm, amount, status };
     const betting = new Betting({ ...bettingData });
     await betting.save();
     return betting;
