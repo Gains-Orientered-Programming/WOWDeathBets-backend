@@ -1,6 +1,6 @@
-import { Consumer, KafkaClient } from 'kafka-node';
+import { Consumer, KafkaClient as Client } from 'kafka-node';
 import User from '../models/user-model';
-const client = new KafkaClient({ kafkaHost: 'localhost:9092' });
+const client = new Client({ kafkaHost: 'localhost:9092' });
 
 const consumer = new Consumer(client, [{ topic: 'user_transactions' }], { autoCommit: true });
 

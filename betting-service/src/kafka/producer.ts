@@ -1,8 +1,8 @@
-import { KafkaClient, Producer, ProduceRequest } from 'kafka-node';
+import { KafkaClient as Client, Producer, ProduceRequest } from 'kafka-node';
 import cron from 'node-cron';
 import Betting from '../models/betting-model';
 
-const client = new KafkaClient({ kafkaHost: 'localhost:9092' });
+const client = new Client({ kafkaHost: 'localhost:9092' });
 const producer = new Producer(client);
 
 //runs every 30 minutes and send concluded bettings to kafka
